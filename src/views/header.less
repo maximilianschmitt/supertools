@@ -1,0 +1,50 @@
+@header-link-height: 28px;
+
+.header {
+    background: @color-bg-offwhite-1;
+    border-bottom: 1px solid @color-border-ui-1;
+    height: 44px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.header__logo-link {
+    padding: 0 10px;
+    margin-left: -10px;
+    height: @header-link-height;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header__team-name {
+    font-weight: bold;
+    font-size: @font-size-l;
+}
+
+.header__main-nav {
+    margin-left: 10px;
+
+    a {
+        display: inline-block;
+        padding: 0 12px;
+        text-decoration: none;
+        height: @header-link-height;
+        line-height: @header-link-height;
+        border-radius: @border-radius-medium;
+    }
+
+    a.selected {
+        background: @color-bg-gray-light;
+    }
+
+    a + a {
+        margin-left: 4px;
+    }
+}
+
+.header__right {
+    margin-left: auto;
+}

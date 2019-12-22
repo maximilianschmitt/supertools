@@ -1,0 +1,26 @@
+mixin sidebar
+    aside.sidebar&attributes(attributes)
+        block
+
+mixin sidebar-panel
+    .sidebar-panel
+        block
+
+mixin sidebar-nav
+    nav.sidebar-panel_nav
+        block
+
+mixin sidebar-panel-header
+    h3.sidebar-panel-header
+        block
+
+mixin sidebar-panel-text
+    .sidebar-panel-text
+        block
+
+mixin sidebar-nav-link()
+    a.sidebar-nav-link(
+        href!=attributes.href,
+        class=`${attributes.selected ? 'selected' : ''}`
+    )
+        block

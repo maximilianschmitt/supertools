@@ -1,0 +1,11 @@
+mixin master
+    doctype(html)
+    html
+        head
+            title=[...(typeof attributes.titleStack === 'string' ? [attributes.titleStack] : attributes.titleStack || []).slice(), (teamName ? `${teamName} ${appName}` : appName)].join(' - ')
+            link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto:400,500,700")
+            link(rel="stylesheet", href="/public/styles/main.css")
+        body
+            each errorMessage in flash.errorMessages
+                .flash.flash_error #{errorMessage}
+            block

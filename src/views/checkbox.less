@@ -1,0 +1,35 @@
+@checkbox-min-height: 16px;
+
+.checkbox {
+    display: flex;
+    padding-left: 4px;
+    min-height: @checkbox-min-height;
+}
+
+.checkbox_inline {
+    display: inline-flex;
+}
+
+.checkbox__input-wrapper {
+    height: @checkbox-min-height;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox__input {
+    width: initial;
+    height: initial;
+    flex-grow: 0;
+}
+
+.checkbox__label {
+    min-height: @checkbox-min-height;
+    line-height: 1.2;
+    margin-left: 8px;
+}
+
+.checkbox-list-v {
+    .checkbox + .checkbox {
+        margin-top: 6px;
+    }
+}

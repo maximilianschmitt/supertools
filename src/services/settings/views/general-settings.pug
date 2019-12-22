@@ -1,0 +1,70 @@
+include ../../../views/input
+include ./_settings-layout
+
++settings-layout(title="General settings", selected="team")
+    form.stacked-form(action='/settings/general', method='post')
+        +input(
+            label="Team name",
+            type="text",
+            name="teamName"
+            value=team.name
+            disabled=!canEdit
+        )
+
+        unless !canEdit
+            button.button.button_primary(type='submit') Save
+            
+    hr.mt-8.mb-4
+
+    if slackSigninEnabled
+        h2 Slack-Signin
+        p.pt-3 Slack-Signin enabled for: <strong>#{team.slack.teamName}</strong> (#{team.slack.teamDomain}.slack.com)
+        if canEdit
+            form(method="POST", action="/settings/general/slack/remove")
+                p.pt-3
+                    button.button.button_danger(type='submit') Remove Slack-Signin
+    else
+        h2 Enable Slack-Signin
+
+        p.pt-3 Slack-Signin allows members of your Slack team to sign into #{appName} without needing to create their own accounts.
+
+        if !slackConfigured && canEdit
+            p.pt-3 ⚠️ You must <a href=#{`${supertoolsSiteUrl}/docs/getting-started/signin-with-slack`} target="_blank">configure Supertools</a> before you can enable Slack-Signin.
+        else if canEdit
+            p.pt-3
+            a(href=`https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team&client_id=${slackClientId}&redirect_uri=${appUrl}/settings/general/slack/enable`)
+                img(
+                    alt="Sign in with Slack",
+                    height="40",
+                    width="172",
+                    src="https://platform.slack-edge.com/img/sign_in_with_slack.png",
+                    srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
+                )
+        else
+            p.pt-3 Slack-Signin must be enabled by an admin
+            
+    if canEdit
+        hr.mt-8.mb-4
+
+        h2 Signup email domains
+
+        p.pt-3 Only allow users with emails from the following domain to signup:
+
+        form.stacked-form(method="POST", action="/settings/general/signup-email-domains")
+            textarea.mt-3.textarea_wide(name="signupEmailDomains", placeholder="Example: google.com", rows="4")
+                | #{(team.signupEmailDomains || []).join('\n')}
+            .text-secondary.mt-1.text-small Separate email domains by newline
+            div
+                button.button.button_primary(type="submit") Save
+
+    if canEdit
+        hr.mt-8.mb-4
+
+        h2 .npmrc
+        p.pt-3 See <a href="https://docs.npmjs.com/files/npmrc">docs on npm</a>
+        form.stacked-form(method="POST", action="/settings/general/npmrc")
+            textarea.mt-3.textarea_wide(name="npmrc", rows="4")
+                | #{npmrc}
+            .text-secondary.mt-1.text-small Enter your auth-token in the following form: <code>//registry.npmjs.org/:_authToken=&lt;auth-token&gt;</code>
+            div
+                button.button.button_primary(type="submit") Save

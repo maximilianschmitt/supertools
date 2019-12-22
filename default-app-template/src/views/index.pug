@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", type="text/css", href="/supertools.css")
+    body.p-2
+        if name
+            p Hello #{name}!
+            p
+                a(href="/") Back
+        else
+            form(action="/", method="GET")
+                input(name="name", placeholder="What's your name?")
+                button.ml-2(type="submit") Say hello!

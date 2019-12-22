@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+.vscode
+user-apps
+!src/services/user-apps
+*.env
+*.log
+data
+src/public/styles
+.npmrc

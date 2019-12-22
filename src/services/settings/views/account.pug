@@ -1,0 +1,30 @@
+include ../../../views/input
+include ./_settings-layout
+include ./_edit-user-form
+
++settings-layout(title="Account", selected="account")
+    +edit-user-form(user)
+
+    if team.slack && team.slack.signinEnabled
+        hr.mt-8.mb-4
+        h2 Slack-Signin
+        if user.slack
+            p.pt-3
+                | Linked to your Slack account <strong>#{user.slack.userName}</strong> (#{user.slack.userEmail})
+                |
+                | on <strong>#{team.slack.teamName}</strong> (#{team.slack.teamDomain}.slack.com).
+            form(method="POST", action="/settings/account/slack/unlink")
+                p.pt-3
+                    button.button.button_danger(type="submit") Unlink Slack account
+        else if team.slack
+            p.pt-3 Link your Slack account to sign in with Slack:
+            p.pt-3
+                - const slackSigninURL = `https://slack.com/oauth/authorize?scope=identity.basic,identity.email&client_id=${slackClientId}&redirect_uri=${appUrl}/settings/account/slack/link`
+                a(href=slackSigninURL)
+                    img(
+                        alt="Sign in with Slack",
+                        height="40",
+                        width="172",
+                        src="https://platform.slack-edge.com/img/sign_in_with_slack.png",
+                        srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
+                    )

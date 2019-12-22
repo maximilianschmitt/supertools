@@ -1,0 +1,9 @@
+include ../../../views/input
+include ./_settings-layout
+
++settings-layout(title=`Create user`, selected="users", backLink="/settings/users")
+  form.stacked-form(action='/settings/users/new', method='post')
+    +input(label='Username', type='text', name='username', value=originalInput.username)
+    +input(label="Email", type='email', name='email', value=originalInput.email)
+    +input(label='Password', type='password', name='password')
+    button.button.button_primary(type='submit') Create user

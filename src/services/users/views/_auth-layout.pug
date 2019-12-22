@@ -1,0 +1,12 @@
+include ../../../views/master-layout
+
++master
+    .auth-layout
+        include ../../../views/header
+        .auth-layout__centering-container
+            .auth-layout__centered
+                .auth-layout__container
+                    h1.auth-layout__title
+                        block title
+                .auth-layout__container.auth-layout__container_form
+                    block form

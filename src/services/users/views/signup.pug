@@ -1,0 +1,24 @@
+extends ./_auth-layout
+include ../../../views/input
+
+block title
+  | Create an account:
+
+block form
+  form.stacked-form(action='/signup', method='post')
+    +input(label='Username', type='text', name='username', value=originalInput.username)
+    +input(label="Email", type='email', name='email', value=originalInput.email)
+    +input(label='Password', type='password', name='password')
+    button.button.button_primary(type='submit') Sign up
+
+    if team.slack && team.slack.signinEnabled
+        hr.mt-4.mb-4
+
+        a(href=`https://slack.com/oauth/authorize?scope=identity.basic,identity.email&client_id=${slackClientId}&redirect_uri=${appUrl}/signup/slack`)
+            img(
+                alt="Sign in with Slack",
+                height="40",
+                width="172",
+                src="https://platform.slack-edge.com/img/sign_in_with_slack.png",
+                srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
+            )

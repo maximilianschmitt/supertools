@@ -1,0 +1,42 @@
+include ../../../views/master-layout
+include ../../../views/sidebar
+
++master(titleStack=[userApp ? userApp.name : 'Apps'])
+    .layout
+        include ../../../views/header
+
+        .layout__body
+            if user.role === 'user' && userApps.length == 0
+                .layout__main
+                    p.pt-3 You don't have access to any apps at the moment.
+
+            else
+                +sidebar(class='layout__sidebar')
+                    if userApps.length > 0
+                        +sidebar-nav
+                            each userApp in userApps
+                                +sidebar-nav-link(
+                                    href=`/user-apps/${userApp.folderName}`,
+                                    selected=(selectedFolderName === userApp.folderName)
+                                ) #{userApp.name}
+
+                    if canCreateApps
+                        +sidebar-panel
+                            +sidebar-panel-header Add a new app
+                            form(action='/user-apps', method='POST')
+                                input.full-width(type='text', name='folderName', placeholder='App name')
+                                if appTemplates.length > 0
+                                    select.mt-2.full-width(name='appTemplateFolderName', placeholder='App template')
+                                        option(value="") Select app template (optional)
+                                        each appTemplate in appTemplates
+                                            option(value=appTemplate.folderName) #{appTemplate.folderName}
+                                button.mt-3.button.button_primary(type='submit') Create
+
+                .layout__main
+                    .layout__main-header
+                        block header
+                            if (userApp)
+                                h1 #{userApp.name}
+                    block main
+                        if (userApp)
+                            include ./_single

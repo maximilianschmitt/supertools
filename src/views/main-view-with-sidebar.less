@@ -1,0 +1,30 @@
+.main-view-with-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.main-view-with-sidebar__main {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    border-top-left-radius: @border-radius-small;
+    border-bottom-left-radius: @border-radius-small;
+    border: 1px solid @color-border-ui-1;
+    border-right: 0;
+}
+
+.main-view-with-sidebar__main_borderless {
+    border: 0;
+}
+
+.main-with-with-sidebar__sidebar {
+    background: @color-bg-offwhite-1;
+    width: @sidebar-width;
+    border-top-right-radius: @border-radius-small;
+    border-bottom-right-radius: @border-radius-small;
+    border: 1px solid @color-border-ui-1;
+}

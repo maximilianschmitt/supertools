@@ -1,0 +1,6 @@
+include ../../../views/input
+include ./_settings-layout
+include ./_edit-user-form
+
++settings-layout(title=`Edit ${userToEdit.username}`, selected="users", backLink="/settings/users")
+    +edit-user-form(userToEdit)

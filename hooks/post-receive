@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+REPOSITORY_BASENAME=$(basename "$PWD")
+REPOSITORY_BASENAME=${REPOSITORY_BASENAME%.git}
+# TODO: Use env var for supertools-location (maybe write hook instead of symlinking)
+GIT_WORK_TREE="/home/git/supertools/data/apps/$REPOSITORY_BASENAME" git checkout -f
+(cd /home/git/supertools && node -r dotenv/config scripts/redeploy-user-app "$REPOSITORY_BASENAME")

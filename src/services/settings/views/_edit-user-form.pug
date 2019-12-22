@@ -1,0 +1,11 @@
+include ../../../views/input
+
+mixin edit-user-form(user)
+    form.stacked-form(method="POST", action=`/settings/users/${user._id}`)
+        +input(label="Username", name="username", value=user.username, type="text")
+
+        +input(label="Email", name="email", value=user.email, type="email")
+
+        +input(label="New password", name="password", type="password")
+
+        button.button.button_primary(type="submit", name="editUser") Save profile

@@ -1,0 +1,29 @@
+include ../../../views/master-layout
+include ../../../views/sidebar
+
++master(titleStack=["Settings"])
+    //- Attributes:
+    //-     title
+    //-     selected
+    mixin settings-layout
+        .settings-layout
+            include ../../../views/header
+
+            .settings-layout__body
+                +sidebar.settings-layout__sidebar
+                    +sidebar-nav
+                        +sidebar-nav-link(href="/settings/users", selected=(attributes.selected === 'users')) Users and roles
+                        if user.role !== 'user' && user.role !== 'dev'
+                            +sidebar-nav-link(href="/settings/app-templates", selected=(attributes.selected === 'app-templates')) App templates
+                        +sidebar-nav-link(href="/settings/general", selected=(attributes.selected === 'team')) General settings
+                        +sidebar-nav-link(href="/settings/account", selected=(attributes.selected === 'account')) Account
+                        if user.role !== 'user'
+                            +sidebar-nav-link(href="/settings/ssh-keys", selected=(attributes.selected === 'ssh-keys')) SSH keys
+
+                .settings-layout__main
+                    if attributes.backLink
+                        .settings__main-back-link-container
+                            a(href=attributes.backLink) Back
+                    .settings__main-header
+                        h1!=attributes.title
+                    block

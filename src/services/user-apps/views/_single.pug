@@ -1,0 +1,77 @@
+include ../../../views/sidebar
+include ../../../views/checkbox
+
+.main-view-with-sidebar
+    .main-view-with-sidebar__main
+        if userApp.pm2Status === 'online'
+            iframe.single-app__app-frame(src=userApp.url)
+        else
+            .single-app__app-not-ready-frame
+                | App is not ready. Status: #{userApp.pm2Status}
+
+    .main-with-with-sidebar__sidebar
+        if isDev
+            +sidebar-panel
+                +sidebar-panel-header Edit app
+                +sidebar-panel-text
+                    | To edit this app, clone the following git repo and push to it:
+                input.mt-4.full-width(value=userApp.gitRemoteURL)
+                if user.sshKeys.length === 0
+                    +sidebar-panel-text
+                        | ⚠️ You must <a href="/settings/ssh-keys">add an SSH key</a> to your account before you can clone and push.
+
+        if canManageUsers
+            +sidebar-panel
+                +sidebar-panel-header Manage user access
+                if otherUsers.length > 0
+                    form(action=`/user-apps/${userApp.folderName}/users`, method="POST")
+                        .checkbox-list-v
+                            each userRow in otherUsers
+                                - const isAdmin = userRow.role === 'admin'
+                                +checkbox(
+                                    name="users",
+                                    value=userRow._id
+                                    checked=(isAdmin || userRow.apps.includes(userApp.folderName))
+                                    disabled=isAdmin
+                                ) #{userRow.username} (#{userRow.role})
+
+                        button.button.button_primary.mt-3(type="submit") Save
+                else
+                    +sidebar-panel-text
+                        | Invite your colleagues to Supertools to add them to this app.
+        else
+            +sidebar-panel
+                +sidebar-panel-header Also working in this app
+                if otherUsersWithAccess.length > 0
+                    +sidebar-panel-text
+                        each userRow in otherUsersWithAccess
+                            | #{userRow.username} (#{userRow.role})
+                            br
+                +sidebar-panel-text
+                    | Admins can manage user access to this app.
+
+        if isDev
+            +sidebar-panel
+                +sidebar-panel-header App secrets
+                +sidebar-panel-text
+                    if userApp.secretKeys.length > 0
+                        each secretKey in userApp.secretKeys
+                            | #{secretKey}
+                            br
+                    else
+                        | App secrets can be used to safely store e.g. database connection strings.
+                if canEditSecrets
+                    +sidebar-panel-text
+                        a.nav-link(href=`/user-apps/${userApp.folderName}/secrets`) Edit secrets
+                else
+                    +sidebar-panel-text
+                        | Only admins can edit secrets.
+
+        if isDev
+            +sidebar-panel
+                +sidebar-panel-header More
+                +sidebar-panel-text
+                    a.nav-link(href=`/user-apps/${userApp.folderName}/log`, target="_blank") View logs 
+                    if canDeleteApps
+                        form(action=`/user-apps/${userApp.folderName}/delete`, method="POST")
+                            button.danger-link.nav-link(type="submit") Delete app

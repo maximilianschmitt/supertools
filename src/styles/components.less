@@ -1,0 +1,87 @@
+.git-remote-url {
+    color: @color-text-secondary;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.flash {
+    width: 100%;
+    padding: 10px 20px;
+}
+.flash_error {
+    background: @color-bg-danger;
+    color: @color-text-danger;
+    border-bottom: 1px solid @color-border-danger;
+}
+
+.panel {
+    background: @color-bg-offwhite-1;
+}
+.panel + .panel {
+    margin-top: 20px;
+}
+
+.panel__header {
+    border: 1px solid @color-border-ui-1;
+    border-top-left-radius: @border-radius-medium;
+    border-top-right-radius: @border-radius-medium;
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+}
+
+.panel__title {
+    font-size: @font-size-l;
+    font-weight: bold;
+}
+
+.panel__body {
+    background: white;
+    padding: 12px 16px;
+    border: 1px solid @color-border-ui-1;
+    border-top: 0;
+    border-bottom-left-radius: @border-radius-medium;
+    border-bottom-right-radius: @border-radius-medium;
+}
+
+.stacked-form > * + * {
+    margin-top: 16px;
+}
+
+.textarea_code {
+    background: @color-bg-black;
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    line-height: inherit;
+    padding: 16px 24px;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.danger-link {
+    font-weight: normal;
+    display: inline;
+    text-decoration: underline;
+    color: @color-text-danger;
+    font-size: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    line-height: inherit;
+    padding: 0;
+}
+
+.nav-link {
+    &::before {
+        content: "‣";
+        text-decoration: none;
+        display: inline-block;
+        font-size: inherit;
+        padding-right: 4px;
+        font-family: Roboto;
+    }
+}

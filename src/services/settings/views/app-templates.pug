@@ -1,0 +1,36 @@
+include ./_settings-layout
+include ../../../views/input
+
+mixin create-app-template-form
+    form.flex.flex-row(method="POST", action="/settings/app-templates")
+        label
+            input(type="text", name="folderName", placeholder="folder-name", value=originalInput.folderName)
+
+        button.button.button_primary.ml-2(type='Submit') Create app template
+
++settings-layout(title="App templates", selected="app-templates")
+    if appTemplates.length === 0
+        | App templates can be used as starting points for new apps. Begin by creating your first app template:
+        .mt-4
+            +create-app-template-form
+    else
+        +create-app-template-form
+        .mt-8
+        each appTemplate in appTemplates
+            .panel
+                .panel__header
+                    h3.panel__title #{appTemplate.folderName}
+
+                    .ml-auto.font-s
+                        form(method="POST", action=`/settings/app-templates/${appTemplate.folderName}/delete`)
+                            button.danger-link(type="submit") Delete
+                .panel__body
+                    div
+                        | Edit with git: <span class="git-remote-url">#{appTemplate.gitRemoteURL}</span>
+                        
+                    if appTemplate.latestCommit
+                        .text-secondary
+                            | #{appTemplate.latestCommit.shortHash} #{appTemplate.latestCommit.shortMessage}
+                    else
+                        .text-secondary Created just now
+        .mt-8

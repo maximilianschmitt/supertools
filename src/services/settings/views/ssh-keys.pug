@@ -1,0 +1,24 @@
+include ./_settings-layout
+include ../../../views/input
+
+
++settings-layout(title="SSH keys", selected="ssh-keys")
+    form.stacked-form(method="POST", action=`/settings/ssh-keys`)
+        textarea.textarea_wide(name="publicKey", placeholder="Public key", rows="4") #{originalInput.publicKey}
+        +input(name="name", type="text", placeholder="Key name", wide=true, value=originalInput.name)
+        button.button.button_primary(type="submit", name="addSSHKey") Add SSH key
+    if user.sshKeys.length > 0
+        hr.mt-8.mb-4
+        h2 Your keys
+        ul.mt-4
+            each sshKey in (user.sshKeys || [])
+                .panel
+                    .panel__header
+                        h3.panel__title #{sshKey.name}
+
+                        .ml-auto.font-s
+                            form.inline(method="POST", action=`/settings/ssh-keys/${sshKey.id}/remove`)
+                                button.danger-link(type="submit", name="removeSSHKey") Delete
+                    .panel__body
+                        div
+                            | Created on #{formatDateAndTime(sshKey.createdAt)}
