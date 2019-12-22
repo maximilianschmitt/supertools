@@ -24,7 +24,7 @@
         "less-middleware": "^3.1.0",
         "lodash": "^4.17.15",
         "mongodb": "^3.2.3",
-        "mongoose": "^5.5.5",
+        "mongoose": "^5.7.5",
         "nedb": "^1.8.0",
         "param-case": "^2.1.1",
         "pm2": "^3.5.0",
