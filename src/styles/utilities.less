@@ -1,0 +1,120 @@
+// Flex
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.font-s {
+    font-size: @font-size-s;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.text-secondary {
+    color: @color-text-secondary;
+}
+
+.text-small {
+    font-size: @font-size-s;
+}
+
+.display-block {
+    display: block;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.inline {
+    display: inline;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.spacing-utils(@times: 8; @index: 1) when (@index <= @times) {
+    .spacing-utils(@times; (@index + 1));
+
+    // Padding
+    .p-@{index} {
+        padding: @index * 4px;
+    }
+
+    .py-@{index} {
+        padding-top: @index * 4px;
+        padding-bottom: @index * 4px;
+    }
+
+    .px-@{index} {
+        padding-left: @index * 4px;
+        padding-right: @index * 4px;
+    }
+
+    .pt-@{index} {
+        padding-top: @index * 4px;
+    }
+
+    .pr-@{index} {
+        padding-right: @index * 4px;
+    }
+
+    .pb-@{index} {
+        padding-bottom: @index * 4px;
+    }
+
+    .pl-@{index} {
+        padding-left: @index * 4px;
+    }
+
+    // Margin
+    .m-@{index} {
+        margin: @index * 4px;
+    }
+
+    .my-@{index} {
+        margin-top: @index * 4px;
+        margin-bottom: @index * 4px;
+    }
+
+    .mx-@{index} {
+        margin-left: @index * 4px;
+        margin-right: @index * 4px;
+    }
+
+    .mt-@{index} {
+        margin-top: @index * 4px;
+    }
+
+    .mr-@{index} {
+        margin-right: @index * 4px;
+    }
+
+    .mb-@{index} {
+        margin-bottom: @index * 4px;
+    }
+
+    .ml-@{index} {
+        margin-left: @index * 4px;
+    }
+}
+
+.spacing-utils();

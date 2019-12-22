@@ -1,0 +1,21 @@
+if user
+    header.header
+        a.header__logo-link(href="/")
+            if teamName
+                .header__team-name= teamName
+            else
+                img(src="/public/images/logo.svg", width="39", height="30")
+        nav.header__main-nav
+            a(href="/", class=(section === 'user-apps' ? 'selected' : '' )) Apps
+            a(href="/settings", class=(section === 'settings' ? 'selected' : '' )) Settings
+        nav.header__right #{user.username} (<a href="/logout">Logout</a>)
+else
+    header.header
+        a.header__logo-link(href="/")
+            if teamName
+                .header__team-name= teamName
+            else
+                img(src="/public/images/logo.svg", width="39", height="30")
+        nav.header__main-nav.header__right
+            a(href="/login", class=(section === 'login' ? 'selected' : '' )) Login
+            a(href="/signup", class=(section === 'signup' ? 'selected' : '' )) Signup

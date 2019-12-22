@@ -1,0 +1,40 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.layout__body {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.layout__sidebar {
+    border-right: 1px solid @color-border-ui-1;
+    width: @sidebar-width;
+}
+
+.layout__main {
+    padding: 0 16px 16px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.layout__main-header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+
+    h1 {
+        font-weight: bold;
+        font-size: @font-size-xxl;
+        line-height: 28px;
+        color: @color-text;
+    }
+}
+
+@import "./_single.less";

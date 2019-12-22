@@ -1,0 +1,14 @@
+include ../../views/master-layout
+
++master(titleStack=[title])
+    .confirm-action-middleware
+        .confirm-action-middleware__container
+            h1.confirm-action-middleware__title=title
+            form.flex.align-items-center.mt-8(method="POST", action=action)
+                input(type="hidden", name="__confirmActionMiddleware__initialData", value=initialData)
+                a.button(href=backLink) Cancel
+                button.button.button_danger.ml-4(
+                    name="__confirmActionMiddleware__confirmed"
+                    value="confirmed"
+                    type="submit"
+                ) #{confirmButtonText}

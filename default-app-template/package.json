@@ -1,0 +1,13 @@
+{
+    "name": "example-app",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev": "PORT=4000 nodemon --exec 'supertools-dev' src/index.js"
+    },
+    "devDependencies": {
+        "@supertools/dev": "^1.7.0"
+    }
+}

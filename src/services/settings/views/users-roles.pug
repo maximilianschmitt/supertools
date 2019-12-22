@@ -1,0 +1,63 @@
+include ./_settings-layout
+include ../../../views/checkbox
+
+mixin user-panel(userRow)
+    - const isMe = userRow._id === user._id
+    - const isAdmin = userRow.role === 'admin'
+
+    .user-panel
+        header.user-panel__header
+            .user-panel__header-left
+                h3.user-panel__username= userRow.username
+                if canEditUsersAndRoles
+                    |
+                    | (
+                    a(href=`/settings/users/${userRow._id}/edit`) Edit user
+                    | )
+            if canEditUsersAndRoles
+                .user-panel__header-right
+                    button.danger-link(
+                        name="deleteUserId",
+                        value=userRow._id,
+                        disabled=isMe
+                        type="submit"
+                    ) Delete
+        .user-panel__body
+            .user-panel__body-section
+                .user-panel__body-section-title Role
+                .user-panel__body-section-main
+                    if canEditUsersAndRoles
+                        select(
+                            name=`users[${userRow._id}][role]`
+                            disabled=isMe
+                        )
+                            each role in roles
+                                option(value=role, selected=(role === userRow.role))= role
+                    else
+                        span= userRow.role
+
+            if canEditUsersAndRoles
+                .user-panel__body-section
+                    .user-panel__body-section-title Apps
+                    .user-panel__body-section-main
+                        each userApp in userApps
+                            +checkbox.nowrap.mr-3.my-1(
+                                inline=true
+                                name=`users[${userRow._id}][apps]`,
+                                value=userApp.folderName
+                                checked=(isAdmin || userRow.apps.includes(userApp.folderName))
+                                disabled=(isAdmin || isMe)
+                            )= userApp.folderName
+
++settings-layout(title="Users and roles", selected="users")
+    if user.role === 'admin'
+        a.button(href="/settings/users/new") Create new user
+        hr.mt-8.mb-8
+    if canEditUsersAndRoles
+        form(method="POST", action="/settings/users")
+            each userRow in users
+                +user-panel(userRow)
+            button.button.button_primary.mt-4(type="submit", name="saveRoles", value="saveRoles") Save
+    else
+        each userRow in users
+            +user-panel(userRow)

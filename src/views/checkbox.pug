@@ -1,0 +1,12 @@
+mixin checkbox
+    label.checkbox(class=attributes.inline ? "checkbox_inline" + " " + attributes.class : attributes.class)
+        .checkbox__input-wrapper
+            input.checkbox__input(
+                type="checkbox",
+                name!=attributes.name,
+                value!=attributes.value,
+                checked!=attributes.checked,
+                disabled!=attributes.disabled,
+            )
+        span.checkbox__label
+            block

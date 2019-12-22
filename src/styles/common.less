@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto";
+    font-size: @font-size-m;
+    color: @color-text;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+}
+
+hr {
+    display: block;
+    border: 0;
+    line-height: 0;
+    height: 1px;
+    background: @color-border-ui-1;
+}
+
+h2 {
+    font-size: @font-size-xl;
+    padding-top: 16px;
+}
+
+h3 {
+    font-size: @font-size-l;
+}
+
+label {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+input,
+textarea {
+    width: 200px;
+    font-size: inherit;
+    font-family: inherit;
+    background: white;
+    line-height: @height-form-element;
+    padding: 0 8px;
+    border: 1px solid @color-border-ui-2;
+}
+
+button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid transparent;
+    background: @color-primary-500;
+    border-radius: 2px;
+    height: @height-form-element;
+    line-height: 1;
+    font-family: inherit;
+    letter-spacing: inherit;
+    font-size: inherit;
+    color: white;
+    font-weight: bold;
+    border-radius: @border-radius-small;
+    padding: 0 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button_danger {
+    background: @color-bg-danger;
+    color: @color-text-danger;
+    font-weight: normal;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+}
+
+th,
+td {
+    padding: 4px;
+    padding-right: 16px;
+    border: 1px solid @color-border-ui-1;
+}

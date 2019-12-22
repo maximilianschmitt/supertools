@@ -1,0 +1,51 @@
+.sidebar {
+    background: @color-bg-offwhite-1;
+}
+
+.sidebar-panel {
+    padding: 16px 16px 4px;
+}
+
+.sidebar-panel_nav {
+    padding: 16px 12px 4px;
+}
+
+.sidebar-panel-header {
+    font-weight: bold;
+    font-size: @font-size-m;
+    line-height: 28px;
+    color: @color-text;
+    margin-bottom: 4px;
+}
+
+.sidebar-panel-text {
+    font-size: 14px;
+    line-height: 20px;
+    color: @color-text;
+    padding-top: 10px;
+
+    p:first-child {
+        padding-top: 0;
+    }
+}
+
+.sidebar-panel-header + .sidebar-panel-text {
+    padding-top: 0;
+}
+
+.sidebar-nav-link {
+    display: block;
+    text-decoration: none;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 12px;
+    border-radius: @border-radius-medium;
+}
+
+.sidebar-nav-link.selected {
+    background: @color-bg-gray-light;
+}
+
+.sidebar-nav-link + .sidebar-nav-link {
+    margin-top: 4px;
+}

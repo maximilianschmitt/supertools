@@ -1,0 +1,45 @@
+mixin input
+    if attributes.label
+        .input(class!=attributes.class)
+            label.input__label
+                span.input__label-text!= attributes.label
+                input.input__input(
+                    name!=attributes.name
+                    value!=attributes.value
+                    disabled!=attributes.disabled
+                    type!=attributes.type
+                    placeholder!=attributes.placeholder
+                    class={input_wide: attributes.wide}
+                )
+    else
+        .input(class!=attributes.class)
+            input.input__input(
+                name!=attributes.name
+                value!=attributes.value
+                disabled!=attributes.disabled
+                type!=attributes.type
+                placeholder!=attributes.placeholder
+                class={input_wide: attributes.wide}
+            )
+
+mixin textarea
+    if attributes.label
+        .textarea(class!=attributes.class)
+            label.textarea__label
+                span.textarea__label-text!= attributes.label
+                textarea.textarea__textarea(
+                    name!=attributes.name
+                    disabled!=attributes.disabled
+                    type!=attributes.type
+                    placeholder!=attributes.placeholder
+                    class={textarea_wide: attributes.wide}
+                ) !{attributes.value}
+    else
+        .textarea(class!=attributes.class)
+            textarea.textarea__textarea(
+                name!=attributes.name
+                disabled!=attributes.disabled
+                type!=attributes.type
+                placeholder!=attributes.placeholder
+                class={textarea_wide: attributes.wide}
+            ) !{attributes.value}

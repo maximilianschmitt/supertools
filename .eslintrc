@@ -1,0 +1,53 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "extends": ["eslint:recommended", "prettier"],
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": "error",
+        "array-callback-return": "error",
+        "eqeqeq": ["error", "smart"],
+        "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+        "handle-callback-err": "error",
+        "no-case-declarations": "off",
+        "no-empty": "warn",
+        "no-extra-bind": "error",
+        "no-label-var": "error",
+        "no-mixed-requires": "error",
+        "no-nested-ternary": "error",
+        "no-process-exit": "error",
+        "no-return-assign": "error",
+        "no-return-await": "error",
+        "no-self-compare": "error",
+        "no-sequences": "error",
+        "no-shadow-restricted-names": "error",
+        "no-throw-literal": "error",
+        "no-undef-init": "error",
+        "no-unneeded-ternary": "error",
+        "no-unused-expressions": "error",
+        "no-unused-vars": [
+            "error",
+            { "vars": "all", "args": "none", "ignoreRestSiblings": false }
+        ],
+        "no-use-before-define": [
+            "error",
+            { "functions": false, "classes": false }
+        ],
+        "no-useless-call": "error",
+        "no-useless-computed-key": "error",
+        "no-useless-return": "error",
+        "no-var": "error",
+        "no-void": "error",
+        "no-with": "error",
+        "object-shorthand": "error",
+        "operator-assignment": ["error", "always"],
+        "prefer-const": "error",
+        "prefer-promise-reject-errors": "error",
+        "prefer-rest-params": "off",
+        "prefer-spread": "error",
+        "require-atomic-updates": "off"
+    }
+}

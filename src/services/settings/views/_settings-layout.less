@@ -1,0 +1,39 @@
+.settings-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: stretch;
+}
+
+.settings-layout__body {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.settings-layout__sidebar {
+    width: @sidebar-width;
+    border-right: 1px solid @color-border-ui-1;
+}
+
+.settings-layout__main {
+    padding: 20px 32px;
+    flex: 1;
+    flex-direction: column;
+}
+
+.settings__main-back-link-container {
+    font-size: @font-size-m;
+    padding-bottom: 12px;
+}
+
+.settings__main-header {
+    padding-bottom: 20px;
+
+    h1 {
+        font-weight: bold;
+        font-size: @font-size-xxl;
+        line-height: 28px;
+        color: @color-text;
+    }
+}
